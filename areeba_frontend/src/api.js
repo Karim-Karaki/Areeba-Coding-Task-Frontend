@@ -9,9 +9,20 @@ export const getAllItems = async () => {
     const response = await api.get("/items");
     return response.data;
 };
+export const getAllCategories = async () => {
+    const response = await api.get("/categories");
+    return response.data;
+};
+export const addCategory = async (category) => {
+    const response = await api.post("/categories", category);
+    return response.data;
+};
+
 
 export const addNewItem = async (item) => {
+    console.log(item);
     const response = await api.post("/items", item);
+    console.log(response.data);
     return response.data;
   };
 
