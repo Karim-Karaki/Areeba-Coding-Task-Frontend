@@ -20,9 +20,7 @@ export const addCategory = async (category) => {
 
 
 export const addNewItem = async (item) => {
-    console.log(item);
     const response = await api.post("/items", item);
-    console.log(response.data);
     return response.data;
   };
 

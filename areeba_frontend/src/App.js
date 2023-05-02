@@ -61,6 +61,7 @@ function App() {
         return alert(newItem.message);
       }
       setItems((prevItems) => [...prevItems, newItem]);
+      fetchItems();
       setShowPopup(false);
     } catch (error) {
       console.error('Error adding item:', error);
@@ -81,6 +82,7 @@ function App() {
         return alert(newCategory.message);
       }
       setCategories((prevCategories) => [...prevCategories, newCategory]);
+      fetchCategories();
       setShowCatPopup(false);
     } catch (error) {
       console.error('Error adding category:', error);
@@ -97,9 +99,11 @@ function App() {
   };
 
   const fetchCategories = async () => {
-    // Fetch categories logic
     const response = await getAllCategories();
-    return setCategories(response);
+    setCategories(response);
+    if (response.length > 0) {
+      setSelectedCategory(response[0]._id);
+    }
   };
 
   const handleCategoryChange = (e) => {
@@ -107,8 +111,11 @@ function App() {
   }
 
   useEffect(() => {
-    fetchCategories();
-    fetchItems();
+    const fetchData = async () => {
+      await fetchCategories();
+      fetchItems();
+    };
+    fetchData();
   }, []);
 
   return (

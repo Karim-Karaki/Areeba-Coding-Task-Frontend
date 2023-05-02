@@ -36,6 +36,7 @@ const Item = ({ item, onDelete, onUpdate, categories }) => {
     setSelectedCategory(e.target.value);
   }
 
+
   return (
     <div className='item-box'>
       <h4>Name:{item.name}</h4>
